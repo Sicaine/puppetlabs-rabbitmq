@@ -39,7 +39,7 @@ Puppet::Type.type(:rabbitmq_binding).provide(:rabbitmqadmin) do
     resources = []
     all_vhosts.each do |vhost|
       all_bindings(vhost).collect do |line|
-        source_name, destination_name, destination_type, routing_key, arguments = line.split(/\t/)
+        source_name, destination_name, destination_type, routing_key, arguments = line.split()
         # Convert output of arguments from the rabbitmqctl command to a json string.
         if !arguments.nil?
           arguments = arguments.gsub(/^\[(.*)\]$/, "").gsub(/\{("(?:.|\\")*?"),/, '{\1:').gsub(/\},\{/, ",")
