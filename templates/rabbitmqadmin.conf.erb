@@ -1,5 +1,5 @@
 [default]
-<% if @ssl -%>
+<% if @ssl && !@no_ssl_management -%>
 ssl = True
 port = <%= @ssl_management_port %>
 <% else -%>
