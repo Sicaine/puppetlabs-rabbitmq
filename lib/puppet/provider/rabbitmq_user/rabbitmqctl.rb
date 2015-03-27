@@ -45,7 +45,7 @@ Puppet::Type.type(:rabbitmq_user).provide(:rabbitmqctl, :parent => Puppet::Provi
 
 
   def check_password
-    response = rabbitmqctl('eval', 'rabbit_auth_backend_internal:check_user_login(<<"' + resource[:name] + '">>, [{password, <<"' + resource[:password] +'">>}]).')
+    response = rabbitmqctl('eval', 'rabbit_access_control:check_user_login/2(<<"' + resource[:name] + '">>, [{password, <<"' + resource[:password] +'">>}]).')
     if response.include? 'invalid credentials'
         false
     else
